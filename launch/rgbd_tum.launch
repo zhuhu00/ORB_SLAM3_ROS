@@ -1,0 +1,17 @@
+<launch>
+    <!-- <param name="use_sim_time" value="false" /> -->
+
+    <!-- Parameters for ORB-SLAM3 -->
+    <arg name="PATH_TO_VOCABULARY" value="$(find orbslam3_ros)/Vocabulary/ORBvoc.bin" />
+    <arg name="PATH_TO_SETTINGS_FILE" value="$(find orbslam3_ros)/config/RGBD/rgbd_TUM1.yaml" />
+    <arg name="PATH_TO_SEQUENCE" value="/media/roma/Huge/00-SLAM_DataSets/TUM/TestingDebugging/rgbd_dataset_freiburg1_xyz" />
+    <arg name="PATH_TO_ASSOCIATIONS" value="/media/roma/Huge/00-SLAM_DataSets/TUM/TestingDebugging/rgbd_dataset_freiburg1_xyz/association.txt" />
+
+    <node name="orb_slam3_rgbd_tum" pkg = "orbslam3_ros" type = "rgbd_tum" args="$(arg PATH_TO_VOCABULARY) $(arg PATH_TO_SETTINGS_FILE) $(arg PATH_TO_SEQUENCE) $(arg PATH_TO_ASSOCIATIONS)" output = "screen">
+    <!-- </node> -->
+    <!-- <node name="orb_slam3_rgbd_tum" pkg = "orbslam3_ros" type = "rgbd_tum" args="$(arg PATH_TO_VOCABULARY) $(arg PATH_TO_SETTINGS_FILE)" output = "screen"> -->
+    </node>
+
+
+
+</launch>

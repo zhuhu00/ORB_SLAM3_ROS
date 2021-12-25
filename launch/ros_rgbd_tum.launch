@@ -1,0 +1,27 @@
+<launch>
+
+    <param name="use_sim_time" value="false" />
+
+    <!-- Parameters for ORB-SLAM3 -->
+    <arg name="PATH_TO_VOCABULARY" value="$(find orbslam3_ros)/Vocabulary/ORBvoc.bin" />
+    <arg name="PATH_TO_SETTINGS_FILE" value="$(find orbslam3_ros)/config/RGBD/rgbd_TUM1.yaml" />
+    <!-- 数据集的位置 -->
+    <arg name="PATH_TO_SEQUENCE" value="/media/roma/Huge/00-SLAM_DataSets/TUM/TestingDebugging/rgbd_dataset_freiburg1_xyz" />
+    <!-- RGBD 时间戳关联文件 -->
+    <arg name="PATH_TO_ASSOCIATIONS" value="/media/roma/Huge/00-SLAM_DataSets/TUM/TestingDebugging/rgbd_dataset_freiburg1_xyz/associations.txt" />
+
+
+    <node name="orb_slam3_rgbd_tum" pkg = "orbslam3_ros" type = "ros_rgbd" args="$(arg PATH_TO_VOCABULARY) $(arg PATH_TO_SETTINGS_FILE)" output = "screen">
+        <!-- <node name="orb_slam3_rgbd_tum" pkg = "orbslam3_ros" type = "ros_rgbd" args="$(arg PATH_TO_VOCABULARY) $(arg PATH_TO_SETTINGS_FILE) $(arg PATH_TO_SEQUENCE) $(arg PATH_TO_ASSOCIATIONS)"output = "screen"> -->
+
+        <!-- for TUM Dataset -->
+        <remap from="/camera/rgb/image_raw"      to="/camera/rgb/image_color"/>
+        <remap from="camera/depth_registered/image_raw"      to="/camera/rgb/image_color"/>
+        <param name = "setting_file" type = "string" value = "${find orbslam3_ros}/config/TUM1.yaml" />
+
+
+        <param name = "voc_file" type = "string" value = "${find orbslam3_ros}/Vocabulary/ORBvoc.bin"/>
+    </node>
+
+
+</launch>

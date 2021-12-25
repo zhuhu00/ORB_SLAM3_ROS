@@ -1,0 +1,24 @@
+<launch>
+
+    <param name="use_sim_time" value="false" />
+
+    <!-- Parameters for ORB-SLAM3 -->
+    <arg name="PATH_TO_VOCABULARY" value="$(find orbslam3_ros)/Vocabulary/ORBvoc.bin" />
+    <arg name="PATH_TO_SETTINGS_FILE" value="$(find orbslam3_ros)/config/Mono/mono_TUM1.yaml" />
+    <!-- 数据集的位置 -->
+    <!-- <arg name="PATH_TO_SEQUENCE" value="/media/roma/Huge/00-SLAM_DataSets/TUM/TestingDebugging/rgbd_dataset_freiburg1_xyz" /> -->
+
+
+    <node name="orb_slam3_mono" pkg = "orbslam3_ros" type = "ros_mono" args="$(arg PATH_TO_VOCABULARY) $(arg PATH_TO_SETTINGS_FILE)" output = "screen">
+
+        <!-- for TUM Dataset -->
+        <remap from="/camera/image_raw"      to="/camera/rgb/image_color"/>
+
+        <!-- <param name = "setting_file" type = "string" value = "${find orbslam3_ros}/config/TUM1.yaml" /> -->
+
+
+        <!-- <param name = "voc_file" type = "string" value = "${find orbslam3_ros}/Vocabulary/ORBvoc.bin"/> -->
+    </node>
+
+
+</launch>
